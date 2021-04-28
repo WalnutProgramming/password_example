@@ -17,7 +17,11 @@ defmodule PasswordExampleWeb.Router do
   scope "/", PasswordExampleWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    get "/", LoginController, :register
+    post "/create", LoginController, :create
+    get "/show", LoginController, :show
+
+    live "/live", PageLive, :index
   end
 
   # Other scopes may use custom stacks.

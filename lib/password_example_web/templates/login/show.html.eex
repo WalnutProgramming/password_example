@@ -1,0 +1,16 @@
+<p>You are logged in.</p>
+<p>Your name is <b><%= @user.name %></b>.</p>
+
+<%= if @user.hashed_password != nil do %>
+	<p>Your password hash is "<b><%= @user.hashed_password %></b>"</p>
+<% end %>
+
+<%= if @user.password == nil do %>
+	<p>I don't know your password.</p>
+<% else %>
+	<p>Your password is "<b><%= @user.password %></b>"</p>
+<% end %>
+
+<%= if @user.seconds_hashing_took != nil do %>
+	<p>Time to calculate password hash: <b><%= @user.seconds_hashing_took %> seconds.</b></p>
+<% end %>
