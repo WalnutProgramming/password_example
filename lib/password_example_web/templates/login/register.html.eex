@@ -6,4 +6,4 @@
 	<%= submit "Login" %>
 <% end %>
 
-<a>Or create a new account</a>
+<a>Or use an existing account</a>
