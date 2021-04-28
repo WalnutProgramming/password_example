@@ -1,0 +1,18 @@
+<section>
+	<table>
+		<thead>
+			<th>Name</th>
+			<th>Password</th>
+			<th>Hashed Password</th>
+		</thead>
+		<tbody>
+			<%= Enum.map @users, fn user -> %>
+				<tr>
+					<td><%= user.name %></td>
+					<td><%= user.password %></td>
+					<td><%= user.hashed_password %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</section>
