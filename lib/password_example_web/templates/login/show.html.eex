@@ -5,12 +5,16 @@
 	<p>Your hashed password is "<b><%= @user.hashed_password %></b>"</p>
 <% end %>
 
+<%= if @user.salt != nil do %>
+	<p>Your salt is "<b><%= @user.salt %></b>"</p>
+<% end %>
+
 <%= if @user.password == nil do %>
 	<p>I don't know your password.</p>
 <% else %>
 	<p>Your password is "<b><%= @user.password %></b>"</p>
 <% end %>
 
-<%= if @user.seconds_hashing_took != nil do %>
-	<p>Time to calculate password hash: <b><%= @user.seconds_hashing_took %> seconds.</b></p>
+<%= if @user.useconds_hashing_took != nil do %>
+	<p>Time to hash password: <b><%= @user.useconds_hashing_took %> microseconds.</b></p>
 <% end %>

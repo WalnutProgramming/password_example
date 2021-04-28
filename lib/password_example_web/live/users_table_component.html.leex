@@ -3,6 +3,7 @@
 		<thead>
 			<th>Name</th>
 			<th>Password</th>
+			<th>Salt</th>
 			<th>Hashed Password</th>
 		</thead>
 		<tbody>
@@ -10,6 +11,7 @@
 				<tr>
 					<td><%= user.name %></td>
 					<td><%= user.password %></td>
+					<td><%= user.salt %></td>
 					<td><%= user.hashed_password %></td>
 				</tr>
 			<% end %>

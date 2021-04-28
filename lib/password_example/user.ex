@@ -4,9 +4,11 @@ defmodule PasswordExample.User do
 
   schema "users" do
     field :name, :string
-    field :password, :string, virtual: true
+    field :password, :string
     field :hashed_password, :string
-    field :seconds_hashing_took, :float
+    field :salt, :string
+    field :useconds_hashing_took, :integer
+    field :hash_type, Ecto.Enum, values: PasswordExample.HashingAlgorithmChoice.choices
 
     timestamps()
   end
@@ -25,7 +27,7 @@ defmodule PasswordExample.User do
 
   def get_by_name_and_password(name, password) do
     user = Repo.get_by(User, name: name)
-    if valid_password?(user, password), do: user
+    if PasswordExample.Hash.verify(password, user), do: user
   end
 
   @doc false
@@ -56,28 +58,16 @@ defmodule PasswordExample.User do
 
     # We only need to hash the password if the password is being changed
     if password && changeset.valid? do
-      {usecs_hashing_took, hashed_password} = :timer.tc(Argon2, :hash_pwd_salt, [password])
-
-      seconds_hashing_took = usecs_hashing_took / 1_000_000
-
-      IO.puts(seconds_hashing_took)
-
+      %{password: password, hashed_password: hashed_password, salt: salt, hash_type: hash_type, useconds_hashing_took: useconds_hashing_took} = PasswordExample.Hash.partial_changeset(password)
       changeset
+      |> put_change(:password, password)
       |> put_change(:hashed_password, hashed_password)
-      |> put_change(:seconds_hashing_took, seconds_hashing_took)
-      |> delete_change(:password)
+      |> put_change(:salt, salt)
+      |> put_change(:hash_type, hash_type)
+      |> put_change(:useconds_hashing_took, useconds_hashing_took)
     else
       changeset
     end
-  end
-
-  def valid_password?(%User{hashed_password: hashed_password}, password) do
-    Argon2.verify_pass(password, hashed_password)
-  end
-
-  def valid_password?(_, _) do
-    Argon2.no_user_verify()
-    false
   end
 
   ## users PubSub

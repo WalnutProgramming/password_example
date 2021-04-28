@@ -4,8 +4,11 @@ defmodule PasswordExample.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :name, :string
+      add :password, :string
       add :hashed_password, :string
-      add :seconds_hashing_took, :float
+      add :salt, :string
+      add :useconds_hashing_took, :integer
+      add :hash_type, :string
 
       timestamps()
     end
