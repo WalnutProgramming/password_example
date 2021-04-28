@@ -2,7 +2,7 @@
 <p>Your name is <b><%= @user.name %></b>.</p>
 
 <%= if @user.hashed_password != nil do %>
-	<p>Your password hash is "<b><%= @user.hashed_password %></b>"</p>
+	<p>Your hashed password is "<b><%= @user.hashed_password %></b>"</p>
 <% end %>
 
 <%= if @user.password == nil do %>
