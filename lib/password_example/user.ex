@@ -19,6 +19,10 @@ defmodule PasswordExample.User do
     |> Repo.insert()
   end
 
+  def get_all do
+    Repo.all(User)
+  end
+
   def get_by_name_and_password(name, password) do
     user = Repo.get_by(User, name: name)
     if valid_password?(user, password), do: user
@@ -84,6 +88,6 @@ defmodule PasswordExample.User do
   end
 
   def users_changed do
-    Phoenix.PubSub.broadcast(PasswordExample.PubSub, @topic, :changed)
+    Phoenix.PubSub.broadcast(PasswordExample.PubSub, @topic, {:users_changed, get_all()})
   end
 end
