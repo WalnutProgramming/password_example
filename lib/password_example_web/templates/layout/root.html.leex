@@ -14,15 +14,21 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+            <li><a href="/show">Home</a></li>
+            <li><a href="/">Register</a></li>
+            <li><a href="/login">Log In</a></li>
+            <%# TODO %>
+            <%= form_for @conn, "/logout" do %>
+              <button>Log out</button>
             <% end %>
+            <%# <form method="post" action="/logout">
+              <button>Log out</button>
+            </form> %>
           </ul>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
+        <div class="phx-logo" style="font-size: 4rem">
+          Passwords Example
+        </div>
       </section>
     </header>
     <%= @inner_content %>

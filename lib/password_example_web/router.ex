@@ -23,6 +23,8 @@ defmodule PasswordExampleWeb.Router do
     get "/login", LoginController, :login
     post "/login", LoginController, :login_post
 
+    post "/logout", LoginController, :logout
+
     get "/show", LoginController, :show
 
     live "/live", PageLive, :index

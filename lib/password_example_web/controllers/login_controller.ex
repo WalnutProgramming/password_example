@@ -46,16 +46,21 @@ defmodule PasswordExampleWeb.LoginController do
       if user = Repo.one(from u in User, where: u.name == ^name) do
         render(conn, "show.html", user: user)
       else
-        logged_out_from_show(conn)
+        logout(conn)
       end
     else
-      logged_out_from_show(conn)
+      logout(conn)
     end
   end
 
-  defp logged_out_from_show(conn) do
+  def logout(conn, _params \\ %{}) do
     conn
     |> put_flash(:info, "You have been logged out.")
+    |> logout_without_message()
+  end
+
+  defp logout_without_message(conn, _params \\%{}) do
+    conn
     |> delete_session(:user)
     |> redirect(to: Routes.login_path(conn, :register))
   end
