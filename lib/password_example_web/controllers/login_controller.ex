@@ -8,9 +8,7 @@ defmodule PasswordExampleWeb.LoginController do
     render(conn, "register.html", changeset: changeset)
   end
 
-  # TODO: login
-
-  def create(conn, %{"user" => user_params}) do
+  def register_post(conn, %{"user" => user_params}) do
     case User.create(user_params) do
       {:ok, user} ->
         conn
@@ -22,18 +20,36 @@ defmodule PasswordExampleWeb.LoginController do
     end
   end
 
+  def login(conn, _params) do
+    changeset = User.changeset(%User{})
+    render(conn, "login.html", changeset: changeset)
+  end
+
+  def login_post(conn, %{"user" => user_params}) do
+    %{"name" => name, "password" => password} = user_params
+
+    if user = User.get_by_name_and_password(name, password) do
+      conn
+      |> put_flash(:info, "Logged in successfully.")
+      |> put_session(:user, user.name)
+      |> redirect(to: Routes.login_path(conn, :show))
+    else
+      conn
+      |> put_flash(:error, "Invalid name or password")
+      |> render("login.html")
+    end
+  end
+
   import Ecto.Query
   def show(conn, _params) do
-    name = get_session(conn, :user)
-    if name == nil do
-      logged_out_from_show(conn)
-    else
-      user = Repo.one(from u in User, where: u.name == ^name)
-      if user == nil do
-        logged_out_from_show(conn)
-      else
+    if name = get_session(conn, :user) do
+      if user = Repo.one(from u in User, where: u.name == ^name) do
         render(conn, "show.html", user: user)
+      else
+        logged_out_from_show(conn)
       end
+    else
+      logged_out_from_show(conn)
     end
   end
 

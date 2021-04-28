@@ -18,7 +18,11 @@ defmodule PasswordExampleWeb.Router do
     pipe_through :browser
 
     get "/", LoginController, :register
-    post "/create", LoginController, :create
+    post "/", LoginController, :register_post
+
+    get "/login", LoginController, :login
+    post "/login", LoginController, :login_post
+
     get "/show", LoginController, :show
 
     live "/live", PageLive, :index

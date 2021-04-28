@@ -18,6 +18,11 @@ defmodule PasswordExample.User do
     |> Repo.insert()
   end
 
+  def get_by_name_and_password(name, password) do
+    user = Repo.get_by(User, name: name)
+    if valid_password?(user, password), do: user
+  end
+
   @doc false
   def changeset(user, attrs \\ %{}) do
     user
@@ -59,5 +64,14 @@ defmodule PasswordExample.User do
     else
       changeset
     end
+  end
+
+  def valid_password?(%User{hashed_password: hashed_password}, password) do
+    Argon2.verify_pass(password, hashed_password)
+  end
+
+  def valid_password?(_, _) do
+    Argon2.no_user_verify()
+    false
   end
 end
