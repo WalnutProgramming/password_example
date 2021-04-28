@@ -27,7 +27,7 @@ defmodule PasswordExampleWeb.Router do
 
     get "/show", LoginController, :show
 
-    live "/live", PageLive, :index
+    live "/hack", HackLive, :index
   end
 
   # Other scopes may use custom stacks.
