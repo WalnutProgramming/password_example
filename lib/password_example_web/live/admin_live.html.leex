@@ -1,3 +1,6 @@
 <h1>Admin</h1>
 
+<%= select :hash_type, :hash_type, HashingAlgorithmChoice.choices, value: @hash_type, phx_blur: "change_hash_type" %>
+<button type="button">Delete Users and Change Hash Type</button>
+
 <%= live_component @socket, UsersTableComponent, id: :users_table %>

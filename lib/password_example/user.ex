@@ -21,6 +21,11 @@ defmodule PasswordExample.User do
     |> Repo.insert()
   end
 
+  def delete_all do
+    users_changed()
+    Repo.delete_all(User)
+  end
+
   def get_all do
     Repo.all(User)
   end
