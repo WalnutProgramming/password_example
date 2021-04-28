@@ -12,7 +12,7 @@ defmodule PasswordExampleWeb.HackLive do
     {:noreply, users: get_all_users()}
   end
 
-  def get_all_users() do
+  defp get_all_users() do
     Repo.all(User)
   end
 end
