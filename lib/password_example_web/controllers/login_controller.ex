@@ -26,20 +26,21 @@ defmodule PasswordExampleWeb.LoginController do
   def show(conn, _params) do
     name = get_session(conn, :user)
     if name == nil do
-      redirect_from_show(conn)
+      logged_out_from_show(conn)
     else
       user = Repo.one(from u in User, where: u.name == ^name)
       if user == nil do
-        redirect_from_show(conn)
+        logged_out_from_show(conn)
       else
         render(conn, "show.html", user: user)
       end
     end
   end
 
-  defp redirect_from_show(conn) do
+  defp logged_out_from_show(conn) do
     conn
     |> put_flash(:info, "You have been logged out.")
+    |> delete_session(:user)
     |> redirect(to: Routes.login_path(conn, :register))
   end
 end
