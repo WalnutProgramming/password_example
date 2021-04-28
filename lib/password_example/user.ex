@@ -13,6 +13,7 @@ defmodule PasswordExample.User do
 
   alias PasswordExample.{User, Repo}
   def create(attrs \\ %{}) do
+    users_changed()
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
@@ -73,5 +74,16 @@ defmodule PasswordExample.User do
   def valid_password?(_, _) do
     Argon2.no_user_verify()
     false
+  end
+
+  ## users PubSub
+  @topic "users"
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(PasswordExample.PubSub, @topic)
+  end
+
+  def users_changed do
+    Phoenix.PubSub.broadcast(PasswordExample.PubSub, @topic, :changed)
   end
 end
