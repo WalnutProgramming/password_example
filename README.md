@@ -4,7 +4,7 @@ NOTE: This repo is meant for a demonstration. It does not illustrate good securi
 
 ## Demo Instructions
 
-1. Go to `/admin` and change the hashing type to `plaintext`
+1. Go to the `/admin` URL and change the hashing type to `plaintext`
    - Have people make a new account. Warn them that everyone will be able to see their name and password.
    - Have people go to `/hack` so they can pretend to be a hacker and view the passwords database
    - Explain why it's bad that the attacker can see everyone's passwords
