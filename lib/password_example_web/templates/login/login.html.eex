@@ -2,7 +2,7 @@
 
 <%= form_for @conn, Routes.login_path(@conn, :login_post), [as: :user], fn f -> %>
 	<label> Name     <%= text_input f, :name %> </label>
-	<label> Password <%= text_input f, :password %> </label>
+	<label> Password <%= text_input f, :password, type: :password %> </label>
 	<%= submit "Login" %>
 <% end %>
 
