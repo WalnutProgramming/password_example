@@ -7,7 +7,10 @@ defmodule PasswordExampleWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_password_example_key",
-    signing_salt: "4yF7WKEj"
+    signing_salt: "4yF7WKEj",
+    http_only: true,
+    secure: true,
+    same_site: "Strict"
   ]
 
   socket "/socket", PasswordExampleWeb.UserSocket,
