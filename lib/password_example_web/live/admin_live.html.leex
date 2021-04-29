@@ -1,6 +1,15 @@
 <h1>Admin</h1>
 
-<%= select :hash_type, :hash_type, HashingAlgorithmChoice.choices, value: @hash_type, phx_blur: "change_hash_type" %>
-<button type="button">Delete Users and Change Hash Type</button>
+<%= f = form_for :change_hash_type, "#", [phx_submit: "change_hash_type", style: "display: flex; gap: 1rem"] %>
+	<label>
+		Current hash type:
+		<%= select f, :hash_type, HashingAlgorithmChoice.choices, value: @hash_type %>
+	</label>
+	<%= submit "Change hash type" %>
+</form>
+
+<%= form_for :delete_all_users, "#", [phx_submit: "delete_all_users"] %>
+	<%= submit "Delete all users" %>
+</form>
 
 <%= live_component @socket, UsersTableComponent, id: :users_table %>
