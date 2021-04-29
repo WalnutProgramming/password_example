@@ -19,6 +19,9 @@ NOTE: This repo is meant for a demonstration. It does not illustrate good securi
    - Have people reload the page so they're logged out, then create a new account. Make sure there are 2 people who use the same password, and make sure someone uses a really common password.
    - Explain that the salt is included as part of the hash.
    - `argon2id` seems to be considered the best password hashing algorithm right now (`bcrypt` is good, but apparently not as good).
+5. Explain why it's not good to implement password storage yourself from scratch.
+
+Inspired by <https://youtu.be/8ZtInClXe1Q>
 
 ## To start your the Phoenix server:
 
