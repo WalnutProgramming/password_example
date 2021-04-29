@@ -17,6 +17,7 @@ NOTE: This repo is meant for a demonstration. It does not illustrate good securi
    - Ask about the length of time that it took to hash their passwords (people can see this on their home page when they log in). Is it a good thing or a bad thing that the password hashing algorithm is super fast? Bad because it makes it easy to crack.
 4. In `/admin`, delete the existing users, then change the hashing type to `argon2id`.
    - Have people reload the page so they're logged out, then create a new account. Make sure there are 2 people who use the same password, and make sure someone uses a really common password.
+   - Explain that the salt is included as part of the hash.
    - `argon2id` seems to be considered the best password hashing algorithm right now (`bcrypt` is good, but apparently not as good).
 
 ## To start your the Phoenix server:
