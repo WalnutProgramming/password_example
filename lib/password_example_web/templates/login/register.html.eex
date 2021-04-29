@@ -1,5 +1,7 @@
 <h1>Register</h1>
 
+<p>WARNING: This is a insecure demo. Do not enter any password that you actually use.</p>
+
 <%= form_for @changeset, Routes.login_path(@conn, :register_post), fn f -> %>
 	<label> Name     <%= text_input f, :name %> </label> <%= error_tag f, :name %>
 	<label> Password <%= text_input f, :password, type: :password %> </label> <%= error_tag f, :password %>

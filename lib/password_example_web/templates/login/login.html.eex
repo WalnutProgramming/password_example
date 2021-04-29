@@ -1,5 +1,7 @@
 <h1>Log In</h1>
 
+<p>WARNING: This is a insecure demo. Do not enter any password that you actually use.</p>
+
 <%= form_for @conn, Routes.login_path(@conn, :login_post), [as: :user], fn f -> %>
 	<label> Name     <%= text_input f, :name %> </label>
 	<label> Password <%= text_input f, :password, type: :password %> </label>
