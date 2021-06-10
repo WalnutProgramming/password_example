@@ -42,14 +42,13 @@ defmodule PasswordExampleWeb.LoginController do
 
   import Ecto.Query
   def show(conn, _params) do
-    if name = get_session(conn, :user) do
-      if user = Repo.one(from u in User, where: u.name == ^name) do
-        render(conn, "show.html", user: user)
-      else
-        logout(conn)
-      end
+    with name when not is_nil(name) <- get_session(conn, :user),
+         user when not is_nil(user) <- Repo.one(from u in User, where: u.name == ^name)
+    do
+      render(conn, "show.html", user: user)
     else
-      logout(conn)
+      _ ->
+        logout(conn)
     end
   end
 
