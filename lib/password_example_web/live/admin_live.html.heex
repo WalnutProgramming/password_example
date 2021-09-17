@@ -1,15 +1,15 @@
 <h1>Admin</h1>
 
-<%= f = form_for :change_hash_type, "#", [phx_submit: "change_hash_type", style: "display: flex; gap: 1rem"] %>
+<.form let={f} for={:change_hash_type} phx-submit="change_hash_type" style="display: flex; gap: 1rem">
 	<label>
 		Current hash type:
 		<%= select f, :hash_type, HashingAlgorithmChoice.choices, value: @hash_type %>
 	</label>
 	<%= submit "Change hash type" %>
-</form>
+</.form>
 
-<%= form_for :delete_all_users, "#", [phx_submit: "delete_all_users"] %>
+<.form for={:delete_all_users} phx-submit="delete_all_users">
 	<%= submit "Delete all users" %>
-</form>
+</.form>
 
 <%= live_component @socket, UsersTableComponent, id: :users_table %>

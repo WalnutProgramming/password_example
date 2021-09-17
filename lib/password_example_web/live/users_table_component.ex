@@ -8,7 +8,16 @@ defmodule PasswordExampleWeb.UsersTableComponent do
     {:ok, assign(socket, users: User.get_all())}
   end
 
-  def handle_info({:users_changed, users}) do
-    {:noreply, users: users}
+  @impl true
+  def handle_event(_event, _unsigned_params, socket) do
+    {:noreply, socket}
+  end
+
+  @impl true
+  def update(%{users: users}, socket) do
+    {:ok, assign(socket, users: users)}
+  end
+  def update(_, socket) do
+    {:ok, socket}
   end
 end

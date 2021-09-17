@@ -24,4 +24,10 @@ defmodule PasswordExampleWeb.AdminLive do
     User.delete_all()
     {:noreply, socket}
   end
+
+  @impl true
+  def handle_info({:users_changed, users}, socket) do
+    send_update UsersTableComponent, id: :users_table, users: users
+    {:noreply, socket}
+  end
 end

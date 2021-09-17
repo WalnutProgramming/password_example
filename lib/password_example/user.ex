@@ -15,15 +15,17 @@ defmodule PasswordExample.User do
 
   alias PasswordExample.{User, Repo}
   def create(attrs \\ %{}) do
-    users_changed()
-    %User{}
+    ret = %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
+    users_changed()
+    ret
   end
 
   def delete_all do
+    ret = Repo.delete_all(User)
     users_changed()
-    Repo.delete_all(User)
+    ret
   end
 
   def get_all do

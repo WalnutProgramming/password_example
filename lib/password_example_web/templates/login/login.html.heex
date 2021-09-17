@@ -2,10 +2,10 @@
 
 <p>WARNING: This is a insecure demo. Everything you submit will be online publicly. Do not enter any password that you actually use.</p>
 
-<%= form_for @conn, Routes.login_path(@conn, :login_post), [as: :user], fn f -> %>
+<.form let={f} for={@conn} action={Routes.login_path(@conn, :login_post)} as={:user}>
 	<label> Name     <%= text_input f, :name %> </label>
 	<label> Password <%= text_input f, :password, type: :password %> </label>
 	<%= submit "Login" %>
-<% end %>
+</.form>
 
 <%= link "Or register for a new account", to: Routes.login_path(@conn, :register) %>

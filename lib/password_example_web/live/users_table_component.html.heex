@@ -7,7 +7,7 @@
 			<th>Hashed Password</th>
 		</thead>
 		<tbody>
-			<%= Enum.map @users, fn user -> %>
+			<%= for user <- @users do %>
 				<tr>
 					<td><%= user.name %></td>
 					<td><%= user.password %></td>
