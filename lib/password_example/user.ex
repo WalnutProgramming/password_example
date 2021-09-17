@@ -32,7 +32,7 @@ defmodule PasswordExample.User do
 
   def get_by_name_and_password(name, password) do
     user = Repo.get_by(User, name: name)
-    if PasswordExample.Hash.verify(password, user), do: user
+    if user && PasswordExample.Hash.verify(password, user), do: user
   end
 
   @doc false
