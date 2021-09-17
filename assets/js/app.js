@@ -2,7 +2,7 @@ import "../css/app.css";
 
 import "phoenix_html";
 import { Socket } from "phoenix";
-import topbar from "topbar";
+import topbar from "../vendor/topbar.js";
 import { LiveSocket } from "phoenix_live_view";
 
 let csrfToken = document
