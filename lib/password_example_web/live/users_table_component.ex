@@ -9,11 +9,6 @@ defmodule PasswordExampleWeb.UsersTableComponent do
   end
 
   @impl true
-  def handle_event(_event, _unsigned_params, socket) do
-    {:noreply, socket}
-  end
-
-  @impl true
   def update(%{users: users}, socket) do
     {:ok, assign(socket, users: users)}
   end
