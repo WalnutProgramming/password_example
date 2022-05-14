@@ -1,6 +1,6 @@
 # PasswordExample
 
-<https://arcane-anchorage-57187.herokuapp.com/>
+<https://arcane-anchorage-57187.herokuapp.com/> (might take a minute to load)
 
 NOTE: This repo is meant for a demonstration. It does not illustrate good security.
 
