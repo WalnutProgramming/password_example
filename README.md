@@ -1,5 +1,7 @@
 # PasswordExample
 
+<https://arcane-anchorage-57187.herokuapp.com/>
+
 NOTE: This repo is meant for a demonstration. It does not illustrate good security.
 
 ## Demo Instructions
